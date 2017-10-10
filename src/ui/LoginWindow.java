@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LoginWindow extends Stage implements LibWindow {
+	
 	public static final LoginWindow INSTANCE = new LoginWindow();
 
 	private boolean isInitialized = false;
