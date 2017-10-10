@@ -11,16 +11,18 @@ final public class LibraryMember extends Person implements Serializable {
 	private String memberId;
 	private CheckoutRecord checkoutRecord;
 	
+
 	public LibraryMember(String memberId, String fname, String lname, String tel,Address add,CheckoutRecord checkoutRecord) {
 		super(fname,lname, tel, add);
-		this.memberId = memberId;	
 		this.checkoutRecord=checkoutRecord;
+
 	}
-	
-	
+
+
 	public String getMemberId() {
 		return memberId;
 	}
+
 
 	public CheckoutRecord getChckoutRecord(){
 		return checkoutRecord;
@@ -28,7 +30,7 @@ final public class LibraryMember extends Person implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Member Info: " + "ID: " + memberId + ", name: " + getFirstName() + " " + getLastName() + 
+		return "Member Info: " + "ID: " + memberId + ", name: " + getFirstName() + " " + getLastName() +
 				", " + getTelephone() + " " + getAddress();
 	}
 
