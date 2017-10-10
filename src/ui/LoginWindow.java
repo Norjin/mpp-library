@@ -1,20 +1,25 @@
 package ui;
 
+import java.io.IOException;
+
 import business.ControllerInterface;
 import business.LoginException;
 import business.SystemController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -22,9 +27,9 @@ import javafx.stage.Stage;
 
 public class LoginWindow extends Stage implements LibWindow {
 	public static final LoginWindow INSTANCE = new LoginWindow();
-	
+
 	private boolean isInitialized = false;
-	
+
 	public boolean isInitialized() {
 		return isInitialized;
 	}
@@ -37,7 +42,7 @@ public class LoginWindow extends Stage implements LibWindow {
 	}
     private LoginWindow () {}
     public void init() {
-        
+
         GridPane grid = new GridPane();
         grid.setId("top-container");
         grid.setAlignment(Pos.CENTER);
@@ -74,7 +79,7 @@ public class LoginWindow extends Stage implements LibWindow {
         messageBox.setAlignment(Pos.BOTTOM_RIGHT);
         messageBox.getChildren().add(messageBar);;
         grid.add(messageBox, 1, 6);
-        
+
         loginBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
@@ -83,11 +88,24 @@ public class LoginWindow extends Stage implements LibWindow {
         			c.login(userTextField.getText().trim(), pwBox.getText().trim());
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Login successful");
+             	    Stage libStage = new Stage();
+             	    Parent libParent = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+             	   libParent.getChildrenUnmodifiable();
+             	    Scene scene = new Scene(libParent);
+             	    libStage.setScene(scene);
+             	    libStage.show();
+             	   TableView tb = (TableView) scene.lookup("#bookDetailsTable");
+             	 //  tb.setMaxHeight(0);
+             	    Node n = (Node)e.getSource();
+             	    n.getScene().getWindow().hide();
         		} catch(LoginException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! " + ex.getMessage());
-        		}
-        	   
+        		} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
         	}
         });
 
@@ -106,8 +124,8 @@ public class LoginWindow extends Stage implements LibWindow {
         Scene scene = new Scene(grid);
         scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
         setScene(scene);
-        
+
     }
-	
-	
+
+
 }
