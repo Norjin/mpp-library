@@ -42,5 +42,10 @@ public class SystemController implements ControllerInterface {
 		return retval;
 	}
 	
+	public String displayMessage(String state) {
+		return state;
+		
+	}
+	
 	
 }
