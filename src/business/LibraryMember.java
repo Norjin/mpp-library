@@ -12,13 +12,13 @@ final public class LibraryMember extends Person implements Serializable {
 	private String memberId;
 	private CheckoutRecord checkoutRecord;
 	
-	public LibraryMember(String memberId, String fname, String lname, String tel, Address add,CheckoutRecord checkoutRecord) {
+
 		super(fname,lname, tel, add);
-		this.memberId = memberId;	
 		this.checkoutRecord=checkoutRecord;
+
 	}
-	
-	
+
+
 	public LibraryMember(String memberId, String fname, String lname, String tel, Address add) {
 		super(fname, lname, tel, add);
 		this.memberId = memberId;
@@ -29,13 +29,13 @@ final public class LibraryMember extends Person implements Serializable {
 		return memberId;
 	}
 
+
 	public CheckoutRecord getChckoutRecord(){
 		return checkoutRecord;
 	}
 	
 	@Override
 	public String toString() {
-		return "Member Info: " + "ID: " + memberId + ", name: " + getFirstName() + " " + getLastName() + 
 				", " + getTelephone() + " " + getAddress();
 	}
 
