@@ -106,5 +106,8 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return retVal;
 	}
+	public void saveLibraryMember(String name, LibraryMember member) {
+		saveToStorage(StorageType.MEMBERS, member);
+	}
 
 }

@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.HashMap;
+
 import business.SystemController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -13,6 +15,9 @@ public class AdminWindow extends Application {
 	
 	@FXML
 	private TextField memId;
+	@FXML
+	private TextField newMemId;
+	
 	@FXML
 	private TextField fname;
 	@FXML
@@ -46,13 +51,26 @@ public class AdminWindow extends Application {
 
 	public void onAdminSaveBtn() {
 		SystemController controller = new SystemController();
-		System.out.println("Btn has clicked sad : " + memId.getText() );
-		controller.addMember();
+		System.out.println("Btn has clicked sad : " + newMemId.getText() );
+		controller.addMember(this);
 	}
 	
-	public Object getMemberData() {
-		return city;
-		
+	public HashMap<String, String> getMemberData() {
+		HashMap<String, String> obj = new HashMap<String, String>();
+		obj.put("memId", newMemId.getText());
+		obj.put("fname", fname.getText());
+		obj.put("lname", lname.getText());
+		obj.put("tel", tel.getText());
+		return obj;
+	}
+	
+	public HashMap<String, String> getAddressData() {
+		HashMap<String, String> obj = new HashMap<String, String>();
+		obj.put("street", street.getText());
+		obj.put("city", city.getText());
+		obj.put("state", state.getText());
+		obj.put("zip", zip.getText());
+		return obj;
 	}
 	
 }

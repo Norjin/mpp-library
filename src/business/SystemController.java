@@ -65,8 +65,15 @@ public class SystemController implements ControllerInterface {
 		return retval;
 	}
 	
-	@FXML public void addMember() {
-		Object data = new AdminWindow();
+	@FXML public void addMember(AdminWindow aw) {
+		HashMap<String, String> memData = aw.getMemberData();
+		HashMap<String, String> addrData = aw.getAddressData();
+		Address addr = new Address(addrData.get("street"), addrData.get("city"), addrData.get("state"), addrData.get("zip"));
+		LibraryMember lmem = new LibraryMember(memData.get("memId"), memData.get("fname"), memData.get("lname"), memData.get("tel"), addr);
+		DataAccess da = new DataAccessFacade();
+		System.out.println("original data\n" + da.readMemberMap());
+//		da.saveLibraryMember(lmem.getMemberId(), lmem);
+//		System.out.println("NEW DATA \n" + da.readMemberMap());
 	}
 
 }
