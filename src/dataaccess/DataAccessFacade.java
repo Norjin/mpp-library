@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,7 +108,18 @@ public class DataAccessFacade implements DataAccess {
 		return retVal;
 	}
 	public void saveLibraryMember(String name, LibraryMember member) {
-		saveToStorage(StorageType.MEMBERS, member);
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		
+		if(memberMap.containsKey(name)) {
+			System.out.println(memberMap.get(name));
+		}
+		memberMap.put(name, member);
+		saveToStorage(StorageType.MEMBERS, memberMap);
+	}
+	
+	public LibraryMember getMember(String name) {
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		return memberMap.get(name);
 	}
 
 }

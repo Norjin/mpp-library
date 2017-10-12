@@ -16,24 +16,7 @@ import dataaccess.User;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
-
-	@FXML
-	private TextField memId;
-	@FXML
-	private TextField fname;
-	@FXML
-	private TextField lname;
-	@FXML
-	private TextField street;
-	@FXML
-	private TextField city;
-	@FXML
-	private TextField state;
-	@FXML
-	private TextField zip;
-	@FXML
-	private TextField tel;
-	
+	private DataAccess da = new DataAccessFacade();
 
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
@@ -69,11 +52,13 @@ public class SystemController implements ControllerInterface {
 		HashMap<String, String> memData = aw.getMemberData();
 		HashMap<String, String> addrData = aw.getAddressData();
 		Address addr = new Address(addrData.get("street"), addrData.get("city"), addrData.get("state"), addrData.get("zip"));
-		LibraryMember lmem = new LibraryMember(memData.get("memId"), memData.get("fname"), memData.get("lname"), memData.get("tel"), addr);
+		LibraryMember lmem = new LibraryMember(memData.get("newMemId"), memData.get("fname"), memData.get("lname"), memData.get("tel"), addr);
 		DataAccess da = new DataAccessFacade();
-		System.out.println("original data\n" + da.readMemberMap());
-//		da.saveLibraryMember(lmem.getMemberId(), lmem);
-//		System.out.println("NEW DATA \n" + da.readMemberMap());
+		da.saveLibraryMember(lmem.getMemberId(), lmem);
+	}
+	
+	public LibraryMember getMember(String name) {
+		return da.getMember(name);
 	}
 
 }
