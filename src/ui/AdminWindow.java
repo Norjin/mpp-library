@@ -8,16 +8,24 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ColorModel;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import business.LibraryMember;
 import business.SystemController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -48,12 +56,34 @@ public class AdminWindow extends Application {
 	private Text adminMemMsg;
 	@FXML
 	private GridPane adminEditMemberForm;
+	@FXML
+	private TableView adminMembersTable;
+	
+	@FXML private TableColumn adminLibMemIdCol;
+	@FXML private TableColumn adminLibMemNameCol;
+	@FXML private TableColumn adminLibMemTelephoneCol;
+	@FXML private TableColumn adminLibMemAddressCol;
+	
 	
 	Stage primaryStage;
 	Stage addEditAdminWindow;
+	protected SystemController controller = new SystemController();
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("AdminWindow.fxml"));
+
+		final ObservableList<LibraryMember> data = FXCollections.observableArrayList(
+			    controller.allMembers()
+			);
+		adminLibMemIdCol.setCellValueFactory(
+			    new PropertyValueFactory<LibraryMember,String>("newMemId")
+			);
+		adminLibMemNameCol.setCellValueFactory(
+			    new PropertyValueFactory<LibraryMember,String>("fname")
+			);
+		adminLibMemTelephoneCol.setCellValueFactory(
+			    new PropertyValueFactory<LibraryMember,String>("lname")
+			);
 		this.primaryStage = stage;
 		this.primaryStage.setTitle("All Library Members");
 		this.primaryStage.setScene(new Scene(root));
@@ -75,7 +105,7 @@ public class AdminWindow extends Application {
 	
 
 	public void onAdminSaveBtn() {
-		SystemController controller = new SystemController();
+//		SystemController controller = new SystemController();
 		System.out.println("Btn has clicked sad : " + newMemId.getText() );
 		controller.addMember(this);
 	}
@@ -99,8 +129,7 @@ public class AdminWindow extends Application {
 	}
 	
 	public void onAdminSearchMember() {
-		SystemController sys = new SystemController();
-		LibraryMember lmem = sys.getMember(adminsearchText.getText());
+		LibraryMember lmem = controller.getMember(adminsearchText.getText());
 		if(lmem != null) {
 			adminMemMsg.setText("");
 			newMemId.setText(lmem.getMemberId());

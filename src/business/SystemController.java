@@ -48,7 +48,7 @@ public class SystemController implements ControllerInterface {
 		return retval;
 	}
 	
-	@FXML public void addMember(AdminWindow aw) {
+	 public void addMember(AdminWindow aw) {
 		HashMap<String, String> memData = aw.getMemberData();
 		HashMap<String, String> addrData = aw.getAddressData();
 		Address addr = new Address(addrData.get("street"), addrData.get("city"), addrData.get("state"), addrData.get("zip"));
@@ -59,6 +59,13 @@ public class SystemController implements ControllerInterface {
 	
 	public LibraryMember getMember(String name) {
 		return da.getMember(name);
+	}
+	
+	public List<LibraryMember> allMembers() {
+		DataAccess da = new DataAccessFacade();
+		List<LibraryMember> retval = new ArrayList<LibraryMember>();
+		retval.addAll(da.readMemberMap().values());
+		return retval;
 	}
 
 }
