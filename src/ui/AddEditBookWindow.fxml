@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <GridPane>
+         <children>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="571.0" stylesheets="@library.css">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Library Book" textAlignment="CENTER" wrappingWidth="244.03515625">
+                     <font>
+                        <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Book ISBN:" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Book TItle:" GridPane.rowIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Book Author Name:" wrappingWidth="173.70703125" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Street:" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City:" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="State:" GridPane.rowIndex="7" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zip:" GridPane.rowIndex="8" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone number:" GridPane.rowIndex="9" />
+                  <TextField fx:id="newMemId" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="fname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="lname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="street" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="state" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="zip" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="tel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Button mnemonicParsing="false" onAction="#onAdminSaveBtn" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+                  <TextField fx:id="adminsearchText" promptText="type library book isbn to search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAdminSearchMember" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Text fx:id="adminMemMsg" fill="#ff3030" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="251.689453125" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial Italic" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</GridPane>

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ui.AdminWindow">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ui.AddEditMemberWindow">
    <children>
    	<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="571.0" stylesheets="@library.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    					<columnConstraints>

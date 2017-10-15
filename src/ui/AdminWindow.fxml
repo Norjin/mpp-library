@@ -26,6 +26,9 @@
                      </columnResizePolicy>
                   </TableView>
                </center>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
                <top>
                   <VBox prefHeight="70.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <children>
@@ -38,18 +41,45 @@
                      </children>
                   </VBox>
                </top>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
             </BorderPane>
          </content>
 
 
 		</Tab>
 		<Tab text="Books">
-			<content>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-			</content>
+         <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <VBox prefHeight="70.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Library Books">
+                           <font>
+                              <Font name="Courier New" size="32.0" />
+                           </font>
+                        </Text>
+                        <Button mnemonicParsing="false" onAction="#onAdminEditBookBtn" prefHeight="25.0" prefWidth="294.0" text="add/edit book" textAlignment="RIGHT" />
+                     </children>
+                  </VBox>
+               </top>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <left>
+                  <TableView fx:id="adminBooksTable" prefHeight="272.0" prefWidth="538.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="adminBookISBN" prefWidth="75.0" text="ISBN" />
+                      <TableColumn fx:id="adminBookTitle" prefWidth="75.0" text="Title" />
+                        <TableColumn fx:id="adminBookAuthors" prefWidth="75.0" text="Authors" />
+                        <TableColumn fx:id="adminBookCkOutLen" prefWidth="107.0" text="Max checkout Length" />
+                        <TableColumn fx:id="adminBookNumCopy" prefWidth="106.0" text="Num of copies" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </left>
+            </BorderPane>
+         </content>
 		</Tab>
 	</tabs>
 </TabPane>

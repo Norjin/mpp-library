@@ -107,14 +107,12 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return retVal;
 	}
-	public void saveLibraryMember(String name, LibraryMember member) {
+	public LibraryMember saveLibraryMember(String name, LibraryMember member) {
 		HashMap<String, LibraryMember> memberMap = readMemberMap();
 		
-		if(memberMap.containsKey(name)) {
-			System.out.println(memberMap.get(name));
-		}
-		memberMap.put(name, member);
+		LibraryMember ret = memberMap.put(name, member);
 		saveToStorage(StorageType.MEMBERS, memberMap);
+		return ret == null ? null : ret;
 	}
 	
 	public LibraryMember getMember(String name) {

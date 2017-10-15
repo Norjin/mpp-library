@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ui.AddEditMemberWindow;
 import ui.AdminWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -48,13 +49,14 @@ public class SystemController implements ControllerInterface {
 		return retval;
 	}
 	
-	 public void addMember(AdminWindow aw) {
+	 public LibraryMember addMember(AddEditMemberWindow aw) {
 		HashMap<String, String> memData = aw.getMemberData();
 		HashMap<String, String> addrData = aw.getAddressData();
 		Address addr = new Address(addrData.get("street"), addrData.get("city"), addrData.get("state"), addrData.get("zip"));
 		LibraryMember lmem = new LibraryMember(memData.get("newMemId"), memData.get("fname"), memData.get("lname"), memData.get("tel"), addr);
 		DataAccess da = new DataAccessFacade();
 		da.saveLibraryMember(lmem.getMemberId(), lmem);
+		return lmem;
 	}
 	
 	public LibraryMember getMember(String name) {
@@ -65,6 +67,7 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		List<LibraryMember> retval = new ArrayList<LibraryMember>();
 		retval.addAll(da.readMemberMap().values());
+		System.out.println(retval);
 		return retval;
 	}
 
