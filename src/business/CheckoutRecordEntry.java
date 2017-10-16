@@ -16,6 +16,7 @@ public class CheckoutRecordEntry implements Serializable {
 		this.dueDate = dueDate;
 		this.bookcopy = bookcopy;
 		this.returnDate = returnDate;
+		this.dueDate =LocalDate.now().plusDays(getBookCopy().getBook().getMaxCheckoutLength());
 	}
 
 	public BookCopy getBookCopy() {
@@ -31,7 +32,7 @@ public class CheckoutRecordEntry implements Serializable {
 	}
 
 	public LocalDate getDueDate() {
-		dueDate=LocalDate.now().plusDays(getBookCopy().getBook().getMaxCheckoutLength());
+
 		return dueDate;
 	}
 
