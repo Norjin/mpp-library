@@ -57,6 +57,8 @@ public class AdminWindow extends Application implements Initializable {
 	protected static SystemController controller = new SystemController();
 
 	Stage addStage = new Stage();
+	Stage bookStage = new Stage();
+	Stage authorStage = new Stage();
 
 	final ObservableList<LibraryMember> memberData = FXCollections
 			.observableArrayList(controller.allMembers());
@@ -191,14 +193,17 @@ public class AdminWindow extends Application implements Initializable {
 	
 	public void openAddAuthorWindow() throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(
-				"AddEditMemberForm.fxml"));
+				"AuthorForm.fxml"));
 		Parent addParent = loader.load();
-		AddEditMemberWindow controller = loader.getController();
+		AddEditBookWindow controller = loader.getController();
 		controller.setAdminWindow(this);
 		addParent.getChildrenUnmodifiable();
 		Scene scene = new Scene(addParent);
-		addStage.setScene(scene);
-		addStage.showAndWait();
+		authorStage.setScene(scene);
+		authorStage.showAndWait();
+	}
+	public void closeAuthorWindow() {
+		authorStage.close();
 	}
 	
 }

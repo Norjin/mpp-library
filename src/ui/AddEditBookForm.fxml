@@ -29,7 +29,7 @@
                   <TextField fx:id="bookCkOutLen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Button mnemonicParsing="false" onAction="#onAdminSaveBookBtn" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
                   <TextField fx:id="bookSearchText" promptText="type library book isbn to search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAdminSearchMember" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAdminSearchBook" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Text fill="#ff3030" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="251.689453125" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Arial Italic" size="14.0" />
