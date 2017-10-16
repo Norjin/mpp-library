@@ -2,7 +2,6 @@ package dataaccess;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,14 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.Book;
-import business.BookCopy;
 import business.LibraryMember;
-import dataaccess.DataAccessFacade.StorageType;
 
 
 public class DataAccessFacade implements DataAccess {
 
-	enum StorageType {
+	public enum StorageType {
 		BOOKS, MEMBERS, USERS;
 	}
 
@@ -37,8 +34,7 @@ public class DataAccessFacade implements DataAccess {
 	public HashMap<String, LibraryMember> readMemberMap() {
 		//Returns a Map with name/value pairs being
 		//   memberId -> LibraryMember
-		return (HashMap<String, LibraryMember>) readFromStorage(
-				StorageType.MEMBERS);
+		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.MEMBERS);
 	}
 
 
@@ -54,7 +50,7 @@ public class DataAccessFacade implements DataAccess {
 	///// - used just once at startup
 	//static void loadMemberMap(List<LibraryMember> memberList) {
 
-	static void loadBookMap(List<Book> bookList) {
+	public static void loadBookMap(List<Book> bookList) {
 		HashMap<String, Book> books = new HashMap<String, Book>();
 		bookList.forEach(book -> books.put(book.getIsbn(), book));
 		saveToStorage(StorageType.BOOKS, books);
@@ -65,7 +61,7 @@ public class DataAccessFacade implements DataAccess {
 		saveToStorage(StorageType.USERS, users);
 	}
 
-	static void loadMemberMap(List<LibraryMember> memberList) {
+	public static void loadMemberMap(List<LibraryMember> memberList) {
 		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
 		memberList.forEach(member -> members.put(member.getMemberId(), member));
 		saveToStorage(StorageType.MEMBERS, members);
