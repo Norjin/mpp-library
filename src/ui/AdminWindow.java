@@ -190,7 +190,15 @@ public class AdminWindow extends Application implements Initializable {
 	}
 	
 	public void openAddAuthorWindow(){
-		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(
+				"AddEditMemberForm.fxml"));
+		Parent addParent = loader.load();
+		AddEditMemberWindow controller = loader.getController();
+		controller.setAdminWindow(this);
+		addParent.getChildrenUnmodifiable();
+		Scene scene = new Scene(addParent);
+		addStage.setScene(scene);
+		addStage.showAndWait();
 	}
 	
 }
