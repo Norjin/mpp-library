@@ -2,11 +2,15 @@ package ui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +26,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import business.Author;
 import business.Book;
 import business.LibraryMember;
 import business.SystemController;
@@ -39,7 +44,7 @@ public class AdminWindow extends Application implements Initializable {
 	private TableColumn<LibraryMember, String> adminLibMemTelephoneCol;
 	@FXML
 	private TableColumn<LibraryMember, String> adminLibMemAddressCol;
-	
+
 	@FXML
 	private TableView<Book> adminBooksTable;
 	@FXML
@@ -52,7 +57,9 @@ public class AdminWindow extends Application implements Initializable {
 	private TableColumn<Book, String> adminBookCkOutLen;
 	@FXML
 	private TableColumn<Book, String> adminBookNumCopy;
-	
+
+	private List<Author> authorList = new ArrayList<Author>();
+
 
 	protected static SystemController controller = new SystemController();
 
@@ -62,10 +69,10 @@ public class AdminWindow extends Application implements Initializable {
 
 	final ObservableList<LibraryMember> memberData = FXCollections
 			.observableArrayList(controller.allMembers());
-	
-//	final ObservableList<Book> bookData = FXCollections
-//			.observableArrayList(controller.);
-	
+
+	final ObservableList<Book> bookData = FXCollections
+			.observableArrayList(controller.allBooks());
+
 	@Override
 	public void start(Stage stage) throws Exception {
 
@@ -130,15 +137,23 @@ public class AdminWindow extends Application implements Initializable {
 				.setCellValueFactory(new PropertyValueFactory<Book, String>(
 						"title"));
 		adminBookAuthors
-				.setCellValueFactory(new PropertyValueFactory<Book, String>(
-						"authors"));
+				.setCellValueFactory(d -> {
+					String rowValue = d.getValue().authorsToString();
+					return new ReadOnlyStringWrapper(String.valueOf(rowValue));
+				});
 		adminBookCkOutLen
 				.setCellValueFactory(new PropertyValueFactory<Book, String>(
 						"maxCheckoutLength"));
 		adminBookNumCopy
-		.setCellValueFactory(new PropertyValueFactory<Book, String>(
+			.setCellValueFactory(new PropertyValueFactory<Book, String>(
 				"copies"));
-//		adminBooksTable.setItems(data);
+
+		adminBookNumCopy.setCellValueFactory(d -> {
+			int rowValue = d.getValue().getNumCopies();
+			return new ReadOnlyStringWrapper(String.valueOf(rowValue));
+		});
+
+		adminBooksTable.setItems(bookData);
 
 		adminBooksTable.getColumns().add(adminBookISBN);
 		adminBooksTable.getColumns().add(adminBookTitle);
@@ -166,7 +181,22 @@ public class AdminWindow extends Application implements Initializable {
 		}
 	}
 
-	public void editMemberForTable(LibraryMember member) {
+	public void addBookForTable(Book book) {
+		System.out.println("added book" + book);
+		ListIterator<Book> li = bookData.listIterator();
+		boolean found = false;
+		while (li.hasNext()) {
+			if (li.next().getIsbn().equals(book.getIsbn())) {
+				li.set(book);
+				System.out.println("LIKIIIIIII " + li.nextIndex());
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			bookData.add(book);
+		}
 	}
 
 	public void closeMemberForm() {
@@ -176,8 +206,9 @@ public class AdminWindow extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		libMemDetails();
+		libBookDetails();
 	}
-	
+
 	@FXML
 	public void onAdminOpenBookFormBtn() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(
@@ -190,7 +221,10 @@ public class AdminWindow extends Application implements Initializable {
 		addStage.setScene(scene);
 		addStage.showAndWait();
 	}
-	
+	public void closeCookForm() {
+		addStage.close();
+	}
+
 	public void openAddAuthorWindow() throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(
 				"AuthorForm.fxml"));
@@ -205,5 +239,12 @@ public class AdminWindow extends Application implements Initializable {
 	public void closeAuthorWindow() {
 		authorStage.close();
 	}
-	
+	public void holdAuthors(Author author) {
+		this.authorList.add(author);
+	}
+
+	public List<Author> getAuthors() {
+		return this.authorList;
+	}
+
 }

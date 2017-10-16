@@ -48,7 +48,7 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
-	
+
 	 public LibraryMember addMember(AddEditMemberWindow aw) {
 		HashMap<String, String> memData = aw.getMemberData();
 		HashMap<String, String> addrData = aw.getAddressData();
@@ -58,17 +58,27 @@ public class SystemController implements ControllerInterface {
 		da.saveLibraryMember(lmem.getMemberId(), lmem);
 		return lmem;
 	}
-	
+
 	public LibraryMember getMember(String name) {
 		return da.getMember(name);
 	}
-	
+
 	public List<LibraryMember> allMembers() {
-		DataAccess da = new DataAccessFacade();
 		List<LibraryMember> retval = new ArrayList<LibraryMember>();
 		retval.addAll(da.readMemberMap().values());
-		System.out.println(retval);
 		return retval;
+	}
+
+	public void saveBook(Book book) {
+		da.saveBook(book);
+	}
+	public List<Book> allBooks() {
+		List<Book> bookList = new ArrayList<Book>();
+		bookList.addAll(da.readBooksMap().values());
+		return bookList;
+	}
+	public Book getBook(String isbn) {
+		return da.getBook(isbn);
 	}
 
 }

@@ -65,7 +65,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <left>
-                  <TableView fx:id="adminBooksTable" prefHeight="272.0" prefWidth="538.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="adminBooksTable" prefHeight="289.0" prefWidth="571.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn fx:id="adminBookISBN" prefWidth="75.0" text="ISBN" />
                       <TableColumn fx:id="adminBookTitle" prefWidth="75.0" text="Title" />

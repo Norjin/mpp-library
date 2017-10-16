@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-
-<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ui.AddEditBookWindow">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddEditBookWindow">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -16,7 +15,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <GridPane prefHeight="317.0" prefWidth="302.0">
+      <GridPane prefHeight="440.0" prefWidth="365.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,7 +24,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -34,18 +35,23 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Book author" wrappingWidth="95.2421875" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name:" GridPane.rowIndex="1" />
+            <Text fx:id="authorMsg" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LastName:" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Street:" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City:" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="State:" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zip:" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Street:" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City:" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="State:" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zip:" GridPane.rowIndex="7" />
             <TextField fx:id="authorFName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="authorLName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="authorStreet" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="authorCity" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="authorState" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="authorZip" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" onAction="#adminAddAuthorBtn" prefHeight="25.0" prefWidth="132.0" text="Add author" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="authorStreet" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="authorCity" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="authorState" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="authorZip" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#adminAddAuthorBtn" prefHeight="25.0" prefWidth="132.0" text="Add author" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone:" GridPane.rowIndex="3" />
+            <TextField fx:id="authorTel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bio:" wrappingWidth="47.7294921875" GridPane.rowIndex="8" />
+            <TextArea fx:id="authorBio" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
    </children>

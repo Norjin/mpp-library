@@ -25,12 +25,10 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of copies:" GridPane.rowIndex="7" />
                   <TextField fx:id="bookIsbn" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="bookTitle" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="bookAuthors" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="bookCkOutLen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="bookNumCopies" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Button mnemonicParsing="false" onAction="#onAdminSaveBookBtn" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-                  <TextField fx:id="bookSearchText" promptText="type library book isbn to search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onAdminSearchBook" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <Text fill="#ff3030" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="251.689453125" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <ComboBox fx:id="bookCkOutLen" prefHeight="25.0" prefWidth="211.0" promptText="7" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Text fx:id="bookMsg" fill="#ff3030" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="251.689453125" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Arial Italic" size="14.0" />
                      </font>
@@ -45,7 +43,7 @@
                      </contextMenu>
                   </Button>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author List" GridPane.rowIndex="5" />
-                  <ListView fx:id="bookAuthorListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text fx:id="bookAuthorList" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
