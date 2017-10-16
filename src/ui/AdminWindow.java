@@ -58,7 +58,7 @@ public class AdminWindow extends Application implements Initializable {
 
 	Stage addStage = new Stage();
 
-	final ObservableList<LibraryMember> data = FXCollections
+	final ObservableList<LibraryMember> memberData = FXCollections
 			.observableArrayList(controller.allMembers());
 	
 //	final ObservableList<Book> bookData = FXCollections
@@ -111,7 +111,7 @@ public class AdminWindow extends Application implements Initializable {
 		adminLibMemAddressCol
 				.setCellValueFactory(new PropertyValueFactory<LibraryMember, String>(
 						"address"));
-		adminMembersTable.setItems(data);
+		adminMembersTable.setItems(memberData);
 
 		adminMembersTable.getColumns().add(adminLibMemIdCol);
 		adminMembersTable.getColumns().add(adminLibMemNameCol);
@@ -148,7 +148,7 @@ public class AdminWindow extends Application implements Initializable {
 
 	public void addMemberForTable(LibraryMember member) {
 		System.out.println("added member" + member);
-		ListIterator<LibraryMember> li = data.listIterator(0);
+		ListIterator<LibraryMember> li = memberData.listIterator(0);
 		boolean found = false;
 		while (li.hasNext()) {
 			if (li.next().getMemberId().equals(member.getMemberId())) {
@@ -160,7 +160,7 @@ public class AdminWindow extends Application implements Initializable {
 		}
 
 		if (!found) {
-			data.add(member);
+			memberData.add(member);
 		}
 	}
 
@@ -175,4 +175,22 @@ public class AdminWindow extends Application implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		libMemDetails();
 	}
+	
+	@FXML
+	public void onAdminOpenBookFormBtn() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(
+				"AddEditBookForm.fxml"));
+		Parent addParent = loader.load();
+		AddEditBookWindow controller = loader.getController();
+		controller.setAdminWindow(this);
+		addParent.getChildrenUnmodifiable();
+		Scene scene = new Scene(addParent);
+		addStage.setScene(scene);
+		addStage.showAndWait();
+	}
+	
+	public void openAddAuthorWindow(){
+		
+	}
+	
 }

@@ -53,7 +53,7 @@
    						<TextField fx:id="tel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
    						<Button mnemonicParsing="false" onAction="#onAdminSaveBtn" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
    						<TextField fx:id="adminsearchText" promptText="type library member id to search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-   						<Button alignment="CENTER" mnemonicParsing="false" onAction="#onAdminSearchMember" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+   						<Button alignment="CENTER" mnemonicParsing="false" onAction="#onAdminSearchBook" text="search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
    						<Text fx:id="adminMemMsg" fill="#ff3030" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="251.689453125" GridPane.rowIndex="1" GridPane.valignment="CENTER">
    							<font>
    								<Font name="Arial Italic" size="14.0" />
