@@ -189,7 +189,7 @@ public class AdminWindow extends Application implements Initializable {
 		addStage.showAndWait();
 	}
 	
-	public void openAddAuthorWindow(){
+	public void openAddAuthorWindow() throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(
 				"AddEditMemberForm.fxml"));
 		Parent addParent = loader.load();
