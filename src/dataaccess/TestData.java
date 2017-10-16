@@ -1,18 +1,20 @@
 package dataaccess;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import business.*;
+import business.Address;
+import business.Author;
+import business.Book;
+import business.LibraryMember;
 
 
 public class TestData {
 	List<LibraryMember> members = new ArrayList<LibraryMember>();
 	@SuppressWarnings("serial")
-	
-	
+
+
 	List<Address> addresses = new ArrayList<Address>() {
 		{
 			add(new Address("101 S. Main", "Fairfield", "IA", "52556"));
@@ -35,21 +37,26 @@ public class TestData {
 			add(new Author("Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
 		}
 	};
-	
-	
-	
+
+
+
 	@SuppressWarnings("serial")
 	List<Book> allBooks = new ArrayList<Book>() {
 		{
-			add(new Book("23-11451", "The Big Fish", 21, Arrays.asList(allAuthors.get(0), allAuthors.get(1))));
+
+			add(new Book("22", "The Big Fish", -21, Arrays.asList(allAuthors.get(0), allAuthors.get(1))));
+			add(new Book("33", "Antartica",- 7, Arrays.asList(allAuthors.get(2))));
+			add(new Book("44", "Thinking Java", 21, Arrays.asList(allAuthors.get(3))));
+			add(new Book("55", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));
+			/*add(new Book("23-11451", "The Big Fish", 21, Arrays.asList(allAuthors.get(0), allAuthors.get(1))));
 			add(new Book("28-12331", "Antartica", 7, Arrays.asList(allAuthors.get(2))));
 			add(new Book("99-22223", "Thinking Java", 21, Arrays.asList(allAuthors.get(3))));
-			add(new Book("48-56882", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));
-			
+			add(new Book("48-56882", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));*/
+
 		}
 	};
-	
-	
+
+
 
 	@SuppressWarnings("serial")
 	List<User> allUsers = new ArrayList<User>() {
@@ -59,7 +66,7 @@ public class TestData {
 			add(new User("103", "111", Auth.BOTH));
 		}
 	};
-	
+
 	public static void main(String[] args) {
 		TestData td = new TestData();
 		td.bookData();
@@ -79,32 +86,32 @@ public class TestData {
 		allBooks.get(2).addCopy();
 		DataAccessFacade.loadBookMap(allBooks);
 	}
-	
+
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
 	}
-	
-	
-	
+
+
+
 	//create library members
-	
+	//{null=Member Info: ID: null, name: Ricardo Montalbahn, 641-472-2871 (501 Central, Mountain View, 94707)}
+
 	public void libraryMemberData() {
 		LibraryMember libraryMember = new LibraryMember("1001", "Andy", "Rogers", "641-223-2211", addresses.get(4));
 		members.add(libraryMember);
 		libraryMember = new LibraryMember("1002", "Drew", "Stevens", "702-998-2414", addresses.get(5));
 		members.add(libraryMember);
-		
+
 		libraryMember = new LibraryMember("1003", "Sarah", "Eagleton", "451-234-8811", addresses.get(6));
 		members.add(libraryMember);
-		
+
 		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));
 		members.add(libraryMember);
-		
+
 		DataAccessFacade.loadMemberMap(members);
-		
-		
+
+
 	}
-	
-		
-	
+
+
 }

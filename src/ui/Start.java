@@ -56,7 +56,7 @@ public class Start extends Application {
 	public void start(Stage primaryStage) {
 		primStage = primaryStage;
 		primaryStage.setTitle("Main Page");
-				
+
 		VBox topContainer = new VBox();
 		topContainer.setId("top-container");
 		MenuBar mainMenu = new MenuBar();

@@ -1,18 +1,24 @@
 package business;
 
-public class CheckoutRecord {
-	private CheckoutRecordEntry checkoutEntry;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-	public CheckoutRecord(CheckoutRecordEntry checkoutEntry) {
-		this.checkoutEntry = checkoutEntry;
+public class CheckoutRecord implements Serializable {
+	private static final long serialVersionUID = 623004515166605827L;
+
+	private List<CheckoutRecordEntry> checkoutEntry = new ArrayList<CheckoutRecordEntry>();
+
+	public CheckoutRecord() {
+//		this.checkoutEntry =new ArrayList<CheckoutRecordEntry>();
 
 	}
 
-	public CheckoutRecordEntry getCheckoutEntry() {
+	public List<CheckoutRecordEntry> getCheckoutEntry() {
 		return checkoutEntry;
 	}
 
-	public void setCheckoutEntry(CheckoutRecordEntry checkoutEntry) {
+	public void setCheckoutEntry(List<CheckoutRecordEntry> checkoutEntry) {
 		this.checkoutEntry = checkoutEntry;
 	}
 

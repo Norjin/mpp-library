@@ -6,10 +6,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.SystemController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.SystemController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="905.0" minWidth="10.0" prefWidth="905.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
@@ -17,65 +17,108 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TabPane prefHeight="359.0" prefWidth="660.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <TabPane prefHeight="821.0" prefWidth="905.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
         <tabs>
-          <Tab text="Check out books">
+          <Tab onSelectionChanged="#checkOutBooksPane" text="Check out books">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="600.0">
                      <children>
-                        <TableView fx:id="checkedOutBooks" layoutX="-2.0" prefHeight="283.0" prefWidth="660.0">
+                        <TableView fx:id="checkedOutBooks" editable="true" layoutX="-2.0" prefHeight="283.0" prefWidth="660.0">
                           <columns>
-                            <TableColumn fx:id="coulmnMemId" prefWidth="131.0" text="Member ID" />
-                            <TableColumn fx:id="columnISBN" prefWidth="107.0" text="ISBN" />
-                              <TableColumn fx:id="columnCheckOutDate" prefWidth="134.0" text="Checkout Date" />
-                              <TableColumn fx:id="columnDueDate" prefWidth="144.0" text="Due Date" />
-                              <TableColumn fx:id="columnReturnDate" prefWidth="143.0" text="Return Date" />
+                            <TableColumn fx:id="columnMemId" prefWidth="82.0" text="Member ID" />
+                            <TableColumn fx:id="colBookTitle" prefWidth="124.0" text="Book Title" />
+                              <TableColumn fx:id="columnISBN" prefWidth="100.0" text="ISBN" />
+                              <TableColumn fx:id="copyNumId" prefWidth="93.0" text="Copy Number" />
+                              <TableColumn fx:id="columnCheckOutDate" prefWidth="89.0" text="Checkout Date" />
+                              <TableColumn fx:id="columnDueDate" prefWidth="82.0" text="Due Date" />
                           </columns>
                         </TableView>
+                        <Button fx:id="createEntryId" layoutX="804.0" layoutY="432.0" mnemonicParsing="false" onAction="#createCheckOut" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3AC947;" text="Creat Entry" />
+                        <TextField fx:id="isbn" layoutX="111.0" layoutY="432.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
+                        <Text fx:id="memIdLable" layoutX="221.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
+                        <TextField fx:id="memId" layoutX="314.0" layoutY="434.0" maxWidth="-Infinity" prefHeight="24.0" prefWidth="66.0" />
+                        <Text layoutX="40.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
+                        <Text fx:id="isbnErrMsg" fill="#d70f0f" layoutX="40.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="48.0" />
+                        <ComboBox fx:id="copyNumComboBoxId" layoutX="496.0" layoutY="432.0" prefHeight="25.0" prefWidth="78.0" promptText="Select" />
+                        <Text fx:id="copyNumText" layoutX="410.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copy NUmber:" wrappingWidth="85.66796875" />
+                        <Button fx:id="checkBookCopyId" layoutX="587.0" layoutY="432.0" mnemonicParsing="false" onAction="#checkBookAvailabilty" text="Check Availability" />
+                        <Text fx:id="memIdErrMsg" fill="#d70f0f" layoutX="221.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="48.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Return bookcopies">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="600.0">
+                     <children>
+                        <Text fx:id="isbnErrMsg1" fill="#d70f0f" layoutX="76.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.0" />
+                        <TableView fx:id="retCheckedOutBooks" editable="true" layoutX="-1.0" prefHeight="309.0" prefWidth="723.0">
+                          <columns>
+                            <TableColumn fx:id="retColMemId" prefWidth="75.0" text="Member ID" />
+                            <TableColumn fx:id="retColBookTitle" prefWidth="76.0" text="Book Title" />
+                              <TableColumn fx:id="retColISBN" prefWidth="82.0" text="ISBN" />
+                              <TableColumn fx:id="retCopyNumId" prefWidth="90.0" text="Copy Number" />
+                              <TableColumn fx:id="retColCheckOutDate" prefWidth="98.0" text="Checkout Date" />
+                              <TableColumn fx:id="retColDueDate" prefWidth="78.0" text="Due Date" />
+                              <TableColumn fx:id="colRetAction" prefWidth="171.0" />
+                          </columns>
+                        </TableView>
+                        <VBox layoutX="566.0" layoutY="12.0" prefHeight="200.0" prefWidth="94.0" />
+                        <Text layoutX="35.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
+                        <TextField fx:id="isbn1" layoutX="76.0" layoutY="418.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
+                        <TextField fx:id="memId1" layoutX="256.0" layoutY="421.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="66.0" />
+                        <Text layoutX="176.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
+                        <Button fx:id="retBookDetBtn" layoutX="338.0" layoutY="421.0" mnemonicParsing="false" onAction="#bookDetToRet" style="-fx-background-color: #3AC947;" text="Book Details" />
+                        <Text fill="#d70f0f" layoutX="360.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.0" />
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Renew bookcopies">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="renewBookBtn" layoutX="407.0" layoutY="468.0" mnemonicParsing="false" onAction="#renewBook" style="-fx-background-color: #3AC947;" text="Renew Book" />
+                        <Text layoutX="75.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
+                        <Text fx:id="memIdLable1" layoutX="219.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
+                        <TextField fx:id="memId2" layoutX="306.0" layoutY="471.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="66.0" />
+                        <TextField fx:id="isbn2" layoutX="121.0" layoutY="468.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
+                        <Text fx:id="isbnErrMsg2" fill="#d70f0f" layoutX="68.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.0" />
+                        <TableView fx:id="renewBookTable" editable="true" prefHeight="309.0" prefWidth="723.0">
+                           <columns>
+                              <TableColumn fx:id="renewColMemId" prefWidth="75.0" text="Member ID" />
+                              <TableColumn fx:id="renewColBTitel" prefWidth="76.0" text="Book Title" />
+                              <TableColumn fx:id="renewColIsbn" prefWidth="82.0" text="ISBN" />
+                              <TableColumn fx:id="renewColCopyId" prefWidth="90.0" text="Copy Number" />
+                              <TableColumn fx:id="renewCheckOutDate" prefWidth="98.0" text="Checkout Date" />
+                              <TableColumn fx:id="renewColDueDate" prefWidth="78.0" text="Due Date" />
+                              <TableColumn fx:id="renewActionBtn" prefWidth="171.0" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Check book status">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
+            <Tab text="Overdue Book">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="status1" prefHeight="291.0" prefWidth="660.0">
+                           <columns>
+                              <TableColumn fx:id="columnISBN2" prefWidth="100.0" text="ISBN" />
+                              <TableColumn fx:id="colBookTitle2" prefWidth="124.0" text="Book Title" />
+                              <TableColumn fx:id="columnCopyNumber2" prefWidth="91.0" text="Copy Number" />
+                              <TableColumn fx:id="columnStatus2" prefWidth="111.0" text="Status" />
+                             <!--  --> <TableColumn fx:id="columnMemId1" prefWidth="130.0" text="Member ID" />
+                              <TableColumn fx:id="columnDueDate2" prefWidth="83.0" text="Due Date" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="425.0" layoutY="441.0" mnemonicParsing="false" onAction="#overDueBook" style="-fx-background-color: #3AC947;" text="Check Satus" />
+                        <TextField fx:id="isbn3" layoutX="279.0" layoutY="441.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
+                        <Text layoutX="152.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
+                        <Text fx:id="isbnErrMsg3" fill="#d70f0f" layoutX="165.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
         </tabs>
       </TabPane>
-      <Button mnemonicParsing="false" onAction="#checkoutBooks" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3AC947;" text="Search">
-         <GridPane.margin>
-            <Insets left="450.0" />
-         </GridPane.margin>
-      </Button>
-      <TextField fx:id="memId" maxWidth="-Infinity">
-         <GridPane.margin>
-            <Insets left="50.0" />
-         </GridPane.margin>
-      </TextField>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="98.13671875">
-         <GridPane.margin>
-            <Insets left="220.0" />
-         </GridPane.margin>
-      </Text>
-      <TextField fx:id="isbn" maxWidth="-Infinity" prefHeight="25.0" prefWidth="120.0">
-         <GridPane.margin>
-            <Insets left="300.0" />
-         </GridPane.margin>
-      </TextField>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="69.423828125">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Text>
    </children>
 </GridPane>

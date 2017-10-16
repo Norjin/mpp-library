@@ -38,6 +38,12 @@ final public class Book implements Serializable {
 	}
 
 
+	public BookCopy getBookCopy(){
+		for(BookCopy b:copies){
+			return b;
+		}
+		return null;
+	}
 	public List<Integer> getCopyNums() {
 		List<Integer> retVal = new ArrayList<>();
 		for(BookCopy c : copies) {
