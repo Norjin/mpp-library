@@ -250,7 +250,7 @@ public class SystemController implements ControllerInterface {
 				return;
 			}
 			b.getCopies()[copyNumComboBoxId.getValue().getCopyNum()-1].changeAvailability();
-			entry = new CheckoutRecordEntry(LocalDate.now(), LocalDate.now().plusDays(b.getMaxCheckoutLength()), new BookCopy(b, copyNumComboBoxId.getValue().getCopyNum()), null);
+			entry = new CheckoutRecordEntry(LocalDate.now(), LocalDate.now(), new BookCopy(b, copyNumComboBoxId.getValue().getCopyNum()), null);
 			libMem.getCheckoutRecord().getCheckoutEntry().add(entry);
 			libMem.getCheckoutRecord().getCheckoutEntry().get(copyNumComboBoxId.getValue().getCopyNum()-1).getBookCopy().changeAvailability();
 			membersMap.put(memId.getText(), libMem);
@@ -493,9 +493,7 @@ public class SystemController implements ControllerInterface {
 	        colRetAction.setCellFactory(cellFactory);
 			retCheckedOutBooks.setItems(data);
 			retColMemId.setCellValueFactory(d -> {
-				Book rowValue = d.getValue().getBookCopy().getBook();
-				String cellValue = rowValue.getTitle();
-				return new ReadOnlyStringWrapper(cellValue);
+				return new ReadOnlyStringWrapper(isbn1.getText());
 			});
 			retColBookTitle.setCellValueFactory(d -> {
 				Book rowValue = d.getValue().getBookCopy().getBook();

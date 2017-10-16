@@ -34,15 +34,15 @@
                           </columns>
                         </TableView>
                         <Button fx:id="createEntryId" layoutX="804.0" layoutY="432.0" mnemonicParsing="false" onAction="#createCheckOut" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3AC947;" text="Creat Entry" />
-                        <TextField fx:id="isbn" layoutX="111.0" layoutY="432.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
-                        <Text fx:id="memIdLable" layoutX="221.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
-                        <TextField fx:id="memId" layoutX="314.0" layoutY="434.0" maxWidth="-Infinity" prefHeight="24.0" prefWidth="66.0" />
-                        <Text layoutX="40.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
+                        <TextField fx:id="isbn" layoutX="49.0" layoutY="395.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
+                        <Text fx:id="memIdLable" layoutX="159.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
+                        <TextField fx:id="memId" layoutX="245.0" layoutY="395.0" maxWidth="-Infinity" prefHeight="24.0" prefWidth="66.0" />
+                        <Text layoutX="14.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
                         <Text fx:id="isbnErrMsg" fill="#d70f0f" layoutX="40.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="48.0" />
-                        <ComboBox fx:id="copyNumComboBoxId" layoutX="496.0" layoutY="432.0" prefHeight="25.0" prefWidth="78.0" promptText="Select" />
-                        <Text fx:id="copyNumText" layoutX="410.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copy NUmber:" wrappingWidth="85.66796875" />
-                        <Button fx:id="checkBookCopyId" layoutX="587.0" layoutY="432.0" mnemonicParsing="false" onAction="#checkBookAvailabilty" text="Check Availability" />
-                        <Text fx:id="memIdErrMsg" fill="#d70f0f" layoutX="221.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="48.0" />
+                        <ComboBox fx:id="copyNumComboBoxId" layoutX="437.0" layoutY="394.0" prefHeight="25.0" prefWidth="78.0" promptText="Select" />
+                        <Text fx:id="copyNumText" layoutX="341.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copy NUmber:" wrappingWidth="85.66796875" />
+                        <Button fx:id="checkBookCopyId" layoutX="530.0" layoutY="394.0" mnemonicParsing="false" onAction="#checkBookAvailabilty" text="Check Availability" />
+                        <Text fx:id="memIdErrMsg" fill="#d70f0f" layoutX="159.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="48.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -63,11 +63,9 @@
                           </columns>
                         </TableView>
                         <VBox layoutX="566.0" layoutY="12.0" prefHeight="200.0" prefWidth="94.0" />
-                        <Text layoutX="35.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
-                        <TextField fx:id="isbn1" layoutX="76.0" layoutY="418.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
-                        <TextField fx:id="memId1" layoutX="256.0" layoutY="421.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="66.0" />
-                        <Text layoutX="176.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
-                        <Button fx:id="retBookDetBtn" layoutX="338.0" layoutY="421.0" mnemonicParsing="false" onAction="#bookDetToRet" style="-fx-background-color: #3AC947;" text="Book Details" />
+                        <TextField fx:id="memId1" layoutX="94.0" layoutY="358.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="66.0" />
+                        <Text layoutX="14.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
+                        <Button fx:id="retBookDetBtn" layoutX="176.0" layoutY="358.0" mnemonicParsing="false" onAction="#bookDetToRet" style="-fx-background-color: #3AC947;" text="Book Details" />
                         <Text fill="#d70f0f" layoutX="360.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.0" />
                      </children></AnchorPane>
             </content>
@@ -76,11 +74,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="renewBookBtn" layoutX="407.0" layoutY="468.0" mnemonicParsing="false" onAction="#renewBook" style="-fx-background-color: #3AC947;" text="Renew Book" />
-                        <Text layoutX="75.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="34.423828125" />
-                        <Text fx:id="memIdLable1" layoutX="219.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
-                        <TextField fx:id="memId2" layoutX="306.0" layoutY="471.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="66.0" />
-                        <TextField fx:id="isbn2" layoutX="121.0" layoutY="468.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="79.0" />
+                        <Button fx:id="renewBookBtn" layoutX="197.0" layoutY="363.0" mnemonicParsing="false" onAction="#renewBook" style="-fx-background-color: #3AC947;" text="Renew Book" />
+                        <Text fx:id="memIdLable1" layoutX="14.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memeber ID:" wrappingWidth="69.13671875" />
+                        <TextField fx:id="memId2" layoutX="96.0" layoutY="366.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="66.0" />
                         <Text fx:id="isbnErrMsg2" fill="#d70f0f" layoutX="68.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.0" />
                         <TableView fx:id="renewBookTable" editable="true" prefHeight="309.0" prefWidth="723.0">
                            <columns>
