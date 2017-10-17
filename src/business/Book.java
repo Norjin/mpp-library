@@ -85,6 +85,13 @@ final public class Book implements Serializable {
 		return authors;
 	}
 
+	public String authorsToString() {
+		String output = "";
+		for(Author au: authors) {
+			output += au.toString() + "\n";
+		}
+		return output;
+	}
 	public String getIsbn() {
 		return isbn;
 	}

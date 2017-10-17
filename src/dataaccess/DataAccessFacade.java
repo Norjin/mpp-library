@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class DataAccessFacade implements DataAccess {
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
 			+ "\\src\\dataaccess\\storage";
+//	+ "/src/dataaccess/storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
 
@@ -102,5 +104,28 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return retVal;
 	}
-
+	public LibraryMember saveLibraryMember(String name, LibraryMember member) {
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		
+		LibraryMember ret = memberMap.put(name, member);
+		saveToStorage(StorageType.MEMBERS, memberMap);
+		return ret == null ? null : ret;
+	}
+	
+	public LibraryMember getMember(String name) {
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		return memberMap.get(name);
+	}
+	
+	public void saveBook(Book book) {
+		HashMap<String, Book> booklist = readBooksMap();
+		booklist.put(book.getIsbn(), book);
+		saveToStorage(StorageType.BOOKS, booklist);
+		
+	}
+	
+	public Book getBook(String isbn) {
+		HashMap<String, Book> bookMap = readBooksMap();
+		return bookMap.get(isbn);
+	}
 }

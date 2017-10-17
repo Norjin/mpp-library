@@ -5,6 +5,8 @@ import java.io.IOException;
 import business.ControllerInterface;
 import business.LoginException;
 import business.SystemController;
+import dataaccess.Auth;
+import dataaccess.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -85,12 +87,18 @@ public class LoginWindow extends Stage implements LibWindow {
         	@Override
         	public void handle(ActionEvent e) {
         		try {
-        			ControllerInterface c = new SystemController();
+        			SystemController c = new SystemController();
         			c.login(userTextField.getText().trim(), pwBox.getText().trim());
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Login successful");
              	    Stage libStage = new Stage();
-             	    Parent libParent = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+             	    FXMLLoader loader = null;
+             	    if(c.currentAuth == Auth.ADMIN) {
+             	    	loader = new FXMLLoader(getClass().getResource("adminWindow.fxml")); 
+             	    } else {
+             	    	loader = new FXMLLoader(getClass().getResource("librarian.fxml"));
+             	    }
+             	    Parent libParent = loader.load();
              	   libParent.getChildrenUnmodifiable();
              	    Scene scene = new Scene(libParent);
              	    libStage.setScene(scene);

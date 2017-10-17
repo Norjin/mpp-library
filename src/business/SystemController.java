@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ui.AddEditMemberWindow;
+import ui.AdminWindow;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import business.Book;
 import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
@@ -28,6 +34,7 @@ import javafx.util.Callback;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
+	private DataAccess da = new DataAccessFacade();
 	@FXML
 	Text memIdErrMsg;
 	@FXML
@@ -100,7 +107,6 @@ public class SystemController implements ControllerInterface {
 	Button bookDetToRet;
 	@FXML
 	Button retBookDetBtn;
-	DataAccess da = new DataAccessFacade();
 	@FXML
 	Text copyNumText;
 
@@ -437,8 +443,8 @@ public class SystemController implements ControllerInterface {
 		List<String> isbnList = new ArrayList<>();
 		checkedBooksMap = da.readBooksMap();
 		isbnList.addAll(checkedBooksMap.keySet());
-		if (isbn1.getText().length()==0) {
-			isbnErrMsg.setText("Please a ISBN");
+		if (!(da.readMemberMap().keySet()).contains(memId1.getText())) {
+			isbnErrMsg.setText("Please enter a valid Member ID");
 			return;
 		} else {
 			b = da.readBooksMap().get(isbn1.getText());
@@ -493,7 +499,7 @@ public class SystemController implements ControllerInterface {
 	        colRetAction.setCellFactory(cellFactory);
 			retCheckedOutBooks.setItems(data);
 			retColMemId.setCellValueFactory(d -> {
-				return new ReadOnlyStringWrapper(isbn1.getText());
+				return new ReadOnlyStringWrapper(memId1.getText());
 			});
 			retColBookTitle.setCellValueFactory(d -> {
 				Book rowValue = d.getValue().getBookCopy().getBook();
@@ -525,6 +531,21 @@ public class SystemController implements ControllerInterface {
 	@FXML public void renewBook(){
 		renewBookTable.getItems().clear();
 		membersMap = da.readMemberMap();
+		memlist = new ArrayList<LibraryMember>(membersMap.values());
+		/*if(!memlist.contains(memId2.getText())){
+			isbnErrMsg.setText("Please enter valid member ID");
+			return;
+		}*/
+
+		List<String> memIdList = new ArrayList<>();
+		memIdList.addAll(da.readMemberMap().keySet());
+		if (memId2.getText().length() == 0 || !memIdList.contains(memId2.getText())) {
+			//if (/*!checkStatusFlag*/) {
+				memIdErrMsg.setText("Please a valid Member ID");
+				//valErrCount++;
+			//}
+		}
+
 		libMem = membersMap.get(memId2.getText());
 		data.addAll(libMem.getCheckoutRecord().getCheckoutEntry());
 		displayRenewBooks();
@@ -545,8 +566,8 @@ public class SystemController implements ControllerInterface {
 		List<String> isbnList = new ArrayList<>();
 		checkedBooksMap = da.readBooksMap();
 		isbnList.addAll(checkedBooksMap.keySet());
-		if (isbn2.getText().length()==0) {
-			isbnErrMsg.setText("Please a ISBN");
+		if (memId2.getText().length()==0) {
+			isbnErrMsg.setText("Please enter valid member ID");
 			return;
 		} else {
 			renewActionBtn.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
@@ -594,9 +615,7 @@ public class SystemController implements ControllerInterface {
 	        renewBookTable.setItems(data);
 	        System.out.println("data ---->"+data);
 	        renewColMemId.setCellValueFactory(d -> {
-				Book rowValue = d.getValue().getBookCopy().getBook();
-				String cellValue = rowValue.getTitle();
-				return new ReadOnlyStringWrapper(cellValue);
+				return new ReadOnlyStringWrapper(memId2.getText());
 			});
 	        renewColBTitel.setCellValueFactory(d -> {
 				Book rowValue = d.getValue().getBookCopy().getBook();
@@ -625,9 +644,37 @@ public class SystemController implements ControllerInterface {
 		}
 	}
 
-	public List<LibraryMember> allMembers() {
-		List<LibraryMember> list = new ArrayList<LibraryMember>();
-		list.addAll(da.readMemberMap().values());
-		return list;
+
+	 public LibraryMember addMember(AddEditMemberWindow aw) {
+		HashMap<String, String> memData = aw.getMemberData();
+		HashMap<String, String> addrData = aw.getAddressData();
+		Address addr = new Address(addrData.get("street"), addrData.get("city"), addrData.get("state"), addrData.get("zip"));
+		LibraryMember lmem = new LibraryMember(memData.get("newMemId"), memData.get("fname"), memData.get("lname"), memData.get("tel"), addr);
+		DataAccess da = new DataAccessFacade();
+		da.saveLibraryMember(lmem.getMemberId(), lmem);
+		return lmem;
 	}
+
+	public LibraryMember getMember(String name) {
+		return da.getMember(name);
+	}
+
+	public List<LibraryMember> allMembers() {
+		List<LibraryMember> retval = new ArrayList<LibraryMember>();
+		retval.addAll(da.readMemberMap().values());
+		return retval;
+	}
+
+	public void saveBook(Book book) {
+		da.saveBook(book);
+	}
+	public List<Book> allBooks() {
+		List<Book> bookList = new ArrayList<Book>();
+		bookList.addAll(da.readBooksMap().values());
+		return bookList;
+	}
+	public Book getBook(String isbn) {
+		return da.getBook(isbn);
+	}
+
 }
