@@ -107,7 +107,6 @@ public class SystemController implements ControllerInterface {
 	Button bookDetToRet;
 	@FXML
 	Button retBookDetBtn;
-	DataAccess da = new DataAccessFacade();
 	@FXML
 	Text copyNumText;
 
