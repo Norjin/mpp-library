@@ -121,6 +121,8 @@ public class SystemController implements ControllerInterface {
 			throw new LoginException("Password incorrect");
 		}
 		currentAuth = map.get(id).getAuthorization();
+		System.out.println(currentAuth);
+//		return 		currentAuth;
 
 	}
 
@@ -443,8 +445,8 @@ public class SystemController implements ControllerInterface {
 		List<String> isbnList = new ArrayList<>();
 		checkedBooksMap = da.readBooksMap();
 		isbnList.addAll(checkedBooksMap.keySet());
-		if (isbn1.getText().length()==0) {
-			isbnErrMsg.setText("Please a ISBN");
+		if (!(da.readMemberMap().keySet()).contains(memId1.getText())) {
+			isbnErrMsg.setText("Please enter a valid Member ID");
 			return;
 		} else {
 			b = da.readBooksMap().get(isbn1.getText());
@@ -499,7 +501,7 @@ public class SystemController implements ControllerInterface {
 	        colRetAction.setCellFactory(cellFactory);
 			retCheckedOutBooks.setItems(data);
 			retColMemId.setCellValueFactory(d -> {
-				return new ReadOnlyStringWrapper(isbn1.getText());
+				return new ReadOnlyStringWrapper(memId1.getText());
 			});
 			retColBookTitle.setCellValueFactory(d -> {
 				Book rowValue = d.getValue().getBookCopy().getBook();
@@ -531,6 +533,21 @@ public class SystemController implements ControllerInterface {
 	@FXML public void renewBook(){
 		renewBookTable.getItems().clear();
 		membersMap = da.readMemberMap();
+		memlist = new ArrayList<LibraryMember>(membersMap.values());
+		/*if(!memlist.contains(memId2.getText())){
+			isbnErrMsg.setText("Please enter valid member ID");
+			return;
+		}*/
+
+		List<String> memIdList = new ArrayList<>();
+		memIdList.addAll(da.readMemberMap().keySet());
+		if (memId2.getText().length() == 0 || !memIdList.contains(memId2.getText())) {
+			//if (/*!checkStatusFlag*/) {
+				memIdErrMsg.setText("Please a valid Member ID");
+				//valErrCount++;
+			//}
+		}
+
 		libMem = membersMap.get(memId2.getText());
 		data.addAll(libMem.getCheckoutRecord().getCheckoutEntry());
 		displayRenewBooks();
@@ -551,8 +568,8 @@ public class SystemController implements ControllerInterface {
 		List<String> isbnList = new ArrayList<>();
 		checkedBooksMap = da.readBooksMap();
 		isbnList.addAll(checkedBooksMap.keySet());
-		if (isbn2.getText().length()==0) {
-			isbnErrMsg.setText("Please a ISBN");
+		if (memId2.getText().length()==0) {
+			isbnErrMsg.setText("Please enter valid member ID");
 			return;
 		} else {
 			renewActionBtn.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
@@ -600,9 +617,7 @@ public class SystemController implements ControllerInterface {
 	        renewBookTable.setItems(data);
 	        System.out.println("data ---->"+data);
 	        renewColMemId.setCellValueFactory(d -> {
-				Book rowValue = d.getValue().getBookCopy().getBook();
-				String cellValue = rowValue.getTitle();
-				return new ReadOnlyStringWrapper(cellValue);
+				return new ReadOnlyStringWrapper(memId2.getText());
 			});
 	        renewColBTitel.setCellValueFactory(d -> {
 				Book rowValue = d.getValue().getBookCopy().getBook();
